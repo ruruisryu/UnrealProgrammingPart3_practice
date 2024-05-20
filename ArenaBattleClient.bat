@@ -1,0 +1,1 @@
+.\Binaries\Win64\ArenaBattleClient.exe 127.0.0.1:7777 -WINDOWED -ResX=800 -ResY=600
