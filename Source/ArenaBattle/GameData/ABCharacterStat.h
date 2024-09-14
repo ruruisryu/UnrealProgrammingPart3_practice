@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -11,7 +10,7 @@ struct FABCharacterStat : public FTableRowBase
 	GENERATED_BODY()
 
 public:
-	FABCharacterStat() : MaxHp(0.0f), Attack(0.0f), AttackRange(0.0f), AttackSpeed(0.0f) {}
+	FABCharacterStat() : MaxHp(0.0f), Attack(0.0f), AttackRange(0.0f), AttackSpeed(0.0f), MovementSpeed(0.f) {}
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stat)
 	float MaxHp;
@@ -43,38 +42,4 @@ public:
 
 		return Result;
 	}
-
-	bool NetSerialize(FArchive& Ar, class UPackageMap* Map, bool& bOutSuccess)
-	{
-		uint32 uMaxHp = (uint32)MaxHp;
-		Ar.SerializeIntPacked(uMaxHp);
-		MaxHp = (float)uMaxHp;
-
-		uint32 uAttack = (uint32)Attack;
-		Ar.SerializeIntPacked(uAttack);
-		Attack = (float)uAttack;
-
-		uint32 uAttackRange = (uint32)AttackRange;
-		Ar.SerializeIntPacked(uAttackRange);
-		AttackRange = (float)uAttackRange;
-
-		uint32 uAttackSpeed = (uint32)AttackSpeed;
-		Ar.SerializeIntPacked(uAttackSpeed);
-		AttackSpeed = (float)uAttackSpeed;
-
-		uint32 uMovementSpeed = (uint32)MovementSpeed;
-		Ar.SerializeIntPacked(uMovementSpeed);
-		MovementSpeed = (float)uMovementSpeed;
-
-		return true;
-	}
-};
-
-template<>
-struct TStructOpsTypeTraits<FABCharacterStat> : public TStructOpsTypeTraitsBase2<FABCharacterStat>
-{
-	enum
-	{
-		WithNetSerializer = true
-	};
 };
