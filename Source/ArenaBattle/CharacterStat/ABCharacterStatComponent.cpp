@@ -14,7 +14,7 @@ UABCharacterStatComponent::UABCharacterStatComponent()
 
 	bWantsInitializeComponent = true;
 
-	SetIsReplicated(true);
+	SetIsReplicatedByDefault(true);
 }
 
 void UABCharacterStatComponent::InitializeComponent()
