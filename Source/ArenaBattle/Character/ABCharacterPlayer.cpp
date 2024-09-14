@@ -20,6 +20,7 @@
 #include "GameFramework/GameStateBase.h"
 #include "EngineUtils.h"
 #include "ABCharacterMovementComponent.h"
+#include "Components/WidgetComponent.h"
 #include "GameFramework/PlayerState.h"
 #include "Engine/AssetManager.h"
 
@@ -556,7 +557,7 @@ float AABCharacterPlayer::TakeDamage(float DamageAmount, FDamageEvent const& Dam
 
 void AABCharacterPlayer::UpdateMeshFromPlayerState()
 {
-	int32 MeshIndex = FMath::Clamp(GetPlayerState()->PlayerId % PlayerMeshes.Num(), 0, PlayerMeshes.Num() - 1);
+	int32 MeshIndex = FMath::Clamp(GetPlayerState()->GetPlayerId() % PlayerMeshes.Num(), 0, PlayerMeshes.Num() - 1);
 	MeshHandle = UAssetManager::Get().GetStreamableManager().RequestAsyncLoad(PlayerMeshes[MeshIndex], FStreamableDelegate::CreateUObject(this, &AABCharacterBase::MeshLoadCompleted));
 
 }
